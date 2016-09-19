@@ -3,11 +3,11 @@
 
 #include <GL/glut.h>
 
-static GLfloat red[] = { 1, 0, 0 }, green[] = { 0, 1, 0 }, blue[]= { 0, 0, 1 };
+static GLfloat red[] = { 1, 0, 0 }, green[] = { 0, 1, 0 }, blue[] = { 0, 0, 1 };
 static int shoulderAngle = 135, elbowAngle = 100, baseAngle = 50;
 
 
-void kb(unsigned char key)
+void kb(unsigned char key, int, int)
 {
     switch(key)
     {
@@ -19,7 +19,7 @@ void kb(unsigned char key)
     glutPostRedisplay();
 }
 
-void special(int key)
+void special(int key, int, int)
 {
     switch (key)
     {
