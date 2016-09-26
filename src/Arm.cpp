@@ -1,6 +1,7 @@
 // This program is from the OpenGL Programming Guide.  It shows a robot arm
 // that you can rotate by pressing the arrow keys.
 
+#include <iostream>
 #include <GL/glut.h>
 
 static GLfloat red[] = { 1, 0, 0 }, green[] = { 0, 1, 0 }, blue[] = { 0, 0, 1 };
@@ -11,26 +12,54 @@ void kb(unsigned char key, int, int)
 {
     switch(key)
     {
-        case 'a': (baseAngle += 5) %= 360; break;
-        case 'd': (baseAngle -= 5) %= 360; break;
+        case 'd': (baseAngle += 5) %= 360; break;
+        case 'a': (baseAngle -= 5) %= 360; break;
         default: return;
     }
 
     glutPostRedisplay();
+    std::cout << "baseAngle: " << baseAngle << "\telbowAngle: " << elbowAngle << "\tshoulderAngle: " << shoulderAngle << std::endl;
 }
 
 void special(int key, int, int)
 {
     switch (key)
     {
-        case GLUT_KEY_LEFT: (elbowAngle += 5) %= 360; break;
-        case GLUT_KEY_RIGHT: (elbowAngle -= 5) %= 360; break;
-        case GLUT_KEY_UP: (shoulderAngle += 5) %= 360; break;
-        case GLUT_KEY_DOWN: (shoulderAngle -= 5) %= 360; break;
+        case GLUT_KEY_LEFT:
+            if(elbowAngle < 105 && shoulderAngle < 180)
+            {
+                if(shoulderAngle + elbowAngle < 180)
+                {
+                    (elbowAngle += 5) %= 360; 
+                }
+            }
+        break;
+        case GLUT_KEY_RIGHT:
+            if(elbowAngle > 0)
+            {
+                (elbowAngle -= 5) %= 360; 
+            }
+        break;
+        case GLUT_KEY_DOWN:
+            if(elbowAngle + shoulderAngle < 260)
+            {
+                if(shoulderAngle < 180)
+                {
+                    (shoulderAngle += 5) %= 360;
+                }
+            }
+        break;
+        case GLUT_KEY_UP:
+            if(shoulderAngle > 60)
+            {
+                (shoulderAngle -= 5) %= 360;
+            }
+        break;
         default: return;
     }
 
     glutPostRedisplay();
+    std::cout << "baseAngle: " << baseAngle << "\telbowAngle: " << elbowAngle << "\tshoulderAngle: " << shoulderAngle << std::endl ;
 }
 
 void solidBox(GLdouble width, GLdouble height, GLdouble depth)
