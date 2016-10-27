@@ -6,3 +6,8 @@ arm
 
 # Visual studio code stuff
 .vscode/
+
+# Kdevelop
+.kdev4/
+*.kdev4
+
