@@ -1,8 +1,5 @@
-# Object files
-*.o
-
-# Binary
-arm
+# Binary stuff
+build/
 
 # Visual studio code stuff
 .vscode/
