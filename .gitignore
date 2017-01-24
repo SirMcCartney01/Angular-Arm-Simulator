@@ -1,6 +1,10 @@
+# Binary stuff
+build/
 
-# Object files
-*.o
+# Visual studio code stuff
+.vscode/
 
-# Binary
-arm
+# Kdevelop
+.kdev4/
+*.kdev4
+
